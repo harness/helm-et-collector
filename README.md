@@ -1,1 +1,1 @@
-# Helm chart for et-collector 
+#Helm chart for et-collector
