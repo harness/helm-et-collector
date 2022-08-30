@@ -10,17 +10,18 @@ namespace:
   name: "overops-snapshot"
 
 image:
-  repository: us.gcr.io/overops-play/overops/et-collector
+  registry: us.gcr.io
+  repository: overops-play/overops/et-collector
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
   tag: "5.0.8-SNAPSHOT-94"
+  digest: ""
 
 # image:
-#   repository: us.gcr.io/platform-205701/harness/release-et-collector-ubi
-#   #repository: harness/et-collector-signed # dockerhub
+#   repository: docker.io
+#   repository: harness/et-collector-signed
 #   pullPolicy: IfNotPresent
-#   # Overrides the image tag whose default is the chart appVersion.
 #   tag: "5.0.7"
+#   digest: ""
 
 imagePullSecrets: []
 nameOverride: ""
