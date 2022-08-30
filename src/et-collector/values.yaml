@@ -68,7 +68,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 6070
 
 ingress:
   enabled: false
@@ -81,7 +81,7 @@ ingress:
       - path: /
         backend:
           serviceName: chart-example.local
-          servicePort: 80
+          servicePort: 6070
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -110,7 +110,7 @@ affinity: {}
 
 et:
   backendURL: http://et-service:9191
-  storageTestURL: ttp://et-service:9191/service/png
+  storageTestURL: http://et-service:9191/service/png
 
 env:
   config:
