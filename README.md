@@ -1,1 +1,1 @@
-#Helm chart for et-collector
+src/et-collector/README.md
