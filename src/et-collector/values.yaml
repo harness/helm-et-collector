@@ -10,18 +10,11 @@ namespace:
   name: "overops-snapshot"
 
 image:
-  registry: us.gcr.io
-  repository: overops-play/overops/et-collector
+  registry: docker.io
+  repository: harness/et-collector-signed
   pullPolicy: IfNotPresent
-  tag: "5.0.8-SNAPSHOT-94"
+  tag: "5.0.7"
   digest: ""
-
-# image:
-#   repository: docker.io
-#   repository: harness/et-collector-signed
-#   pullPolicy: IfNotPresent
-#   tag: "5.0.7"
-#   digest: ""
 
 imagePullSecrets: []
 nameOverride: ""
