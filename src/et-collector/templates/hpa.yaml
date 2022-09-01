@@ -3,6 +3,7 @@
 # kind: HorizontalPodAutoscaler
 # metadata:
 #   name: {{ include "et-collector.fullname" . }}
+#   namespace: {{ .Release.Namespace }}
 #   labels:
 #     {{- include "et-collector.labels" . | nindent 4 }}
 # spec:

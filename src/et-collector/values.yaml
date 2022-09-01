@@ -6,22 +6,12 @@ replicaCount: 1
 maxSurge: 100%
 maxUnavailable: 0
 
-namespace:
-  name: "overops-snapshot"
-
 image:
-  registry: us.gcr.io
-  repository: overops-play/overops/et-collector
+  registry: docker.io
+  repository: harness/et-collector-signed
   pullPolicy: IfNotPresent
-  tag: "5.0.8-SNAPSHOT-94"
+  tag: "5.0.7"
   digest: ""
-
-# image:
-#   repository: docker.io
-#   repository: harness/et-collector-signed
-#   pullPolicy: IfNotPresent
-#   tag: "5.0.7"
-#   digest: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -68,7 +58,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 6070
 
 ingress:
   enabled: false
@@ -81,7 +71,7 @@ ingress:
       - path: /
         backend:
           serviceName: chart-example.local
-          servicePort: 80
+          servicePort: 6070
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -110,9 +100,8 @@ affinity: {}
 
 et:
   backendURL: http://et-service:9191
-  storageTestURL: ttp://et-service:9191/service/png
+  storageTestURL: http://et-service:9191/service/png
 
 env:
   config:
     JVM_HEAPSIZE: "1600m"
-  secrets:
