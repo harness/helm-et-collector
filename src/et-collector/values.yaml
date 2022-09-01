@@ -105,4 +105,3 @@ et:
 env:
   config:
     JVM_HEAPSIZE: "1600m"
-  secrets:
