@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "et-collector.fullname" . }}
+  name: et-collector
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "et-collector.labels" . | nindent 4 }}
@@ -44,11 +44,9 @@ spec:
               containerPort: 6070
               protocol: TCP
 
-          {{- if or .Values.env.config }}
           envFrom:
           - configMapRef:
-              name: {{ include "et-collector.fullname" . }}
-          {{- end }}
+              name: et-collector-env
 
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
@@ -83,7 +81,7 @@ spec:
       volumes:
       - name: et-private-volume
         configMap:
-          name: {{ include "et-collector.fullname" . }}-config
+          name: et-collector-config
           items:
             - key: collector.properties
               path: collector.properties
