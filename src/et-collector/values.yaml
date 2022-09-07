@@ -19,12 +19,12 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "harness-default"
 
 livenessProbe:
   enabled: true
@@ -42,19 +42,14 @@ readinessProbe:
   successThreshold: 1
   timeoutSeconds: 1
 
-
 podAnnotations: {}
 
 podSecurityContext: {}
-  # fsGroup: 2000
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+securityContext:
+  runAsUser: 65534
+  runAsNonRoot: true
+
 
 service:
   type: ClusterIP
@@ -73,9 +68,7 @@ ingress:
           serviceName: chart-example.local
           servicePort: 6070
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+
 
 resources:
   limits:
@@ -88,7 +81,7 @@ resources:
 autoscaling:
   enabled: false
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 5
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
@@ -102,6 +95,5 @@ et:
   backendURL: http://et-service:9191
   storageTestURL: http://et-service:9191/service/png
 
-env:
-  config:
-    JVM_HEAPSIZE: "1600m"
+  java:
+    heapSize: "1600m"
