@@ -3,6 +3,20 @@ entries:
   et-collector:
   - apiVersion: v2
     appVersion: 5.0.7
+    created: "2022-09-07T07:29:26.234868721Z"
+    dependencies:
+    - name: harness-common
+      repository: https://harness.github.io/helm-common
+      version: 1.x.x
+    description: A Helm chart for Kubernetes
+    digest: 7e0a284a5472c1752d4e657e870229060b2c209086959af9bedb8316cc8ab2fe
+    name: et-collector
+    type: application
+    urls:
+    - https://github.com/harness/helm-et-collector/releases/download/et-collector-0.1.7/et-collector-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 5.0.7
     created: "2022-09-01T11:26:12.441454583Z"
     dependencies:
     - name: common
@@ -45,4 +59,4 @@ entries:
     urls:
     - https://github.com/harness/helm-et-collector/releases/download/et-collector-0.1.0/et-collector-0.1.0.tgz
     version: 0.1.0
-generated: "2022-09-01T11:26:12.441466784Z"
+generated: "2022-09-07T07:29:26.234887625Z"
