@@ -33,6 +33,13 @@ spec:
       serviceAccountName: {{ include "et-collector.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+      - name: wait-for-et-service
+        image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
+        imagePullPolicy: IfNotPresent
+        args:
+          - "pod"
+          - "-lapp=et-service"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -83,6 +90,8 @@ spec:
         configMap:
           name: et-collector-config
           items:
+            - key: application.properties
+              path: application.properties
             - key: collector.properties
               path: collector.properties
 
