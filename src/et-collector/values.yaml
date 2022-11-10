@@ -17,6 +17,14 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+waitForInitContainer:
+  image:
+    registry: docker.io
+    repository: harness/helm-init-container
+    pullPolicy: IfNotPresent
+    tag: "latest"
+    digest: ""
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
@@ -92,8 +100,14 @@ tolerations: []
 affinity: {}
 
 et:
+  logLevel: INFO
   backendURL: http://et-service:9191
   storageTestURL: http://et-service:9191/service/png
+  redis:
+    enabled: false
+    host:
+    port: 6379
+    useSentinel: true
 
   java:
     heapSize: "1600m"
