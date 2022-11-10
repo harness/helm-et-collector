@@ -14,6 +14,20 @@ metadata:
   name: et-collector-config
   namespace: {{ .Release.Namespace }}
 data:
+  application.properties: |-
+    logging.level.root={{ .Values.et.logLevel }}
+    {{- if .Values.et.redis.enabled   }}
+    spring.profiles.active=msg_redis
+      {{- if .Values.et.redis.useSentinel }}
+    spring.redis.sentinel.master=harness-redis
+    spring.redis.sentinel.nodes=redis://redis-sentinel-harness-announce-0.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-1.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-2.{{ .Release.Namespace }}:26379
+      {{- else }}
+    spring.redis.host={{ .Values.et.redis.host }}
+    spring.redis.port={{ .Values.et.redis.port }}
+      {{- end }}
+    {{- else }}
+    spring.profiles.active=default
+    {{- end }}
   collector.properties: |-
     takipi.listen.port=6070
     takipi.backend.url={{ .Values.et.backendURL }}
